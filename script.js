@@ -14,6 +14,9 @@ function getNameInitials(name) {
 
 function drawCards(peoplesData) {
     sunday = '', monday = '', tuesday = '', wednesday = '', thursday = '', friday = '', saturday = '';
+    peoplesData.sort(function (a, b) {
+        return new Date(b.birthday) + new Date(a.birthday);
+    });
     peoplesData.forEach(element => {
         element['day'] = new Date(element.birthday).getDay();
         switch (element.day) {
@@ -43,35 +46,35 @@ function drawCards(peoplesData) {
     markup = `<div class="calendars">
                     <div class="card">
                         <div class="card-head">MON</div>
-                        <div class="card-body">${monday ? monday : '<span class="no-birthday">No Birthday</span>'}</div>
+                        <div class="card-body">${monday ? monday : '<div class="no-birthday">No Birthday</div>'}</div>
                     </div>
                     <div class="card">
                         <div class="card-head">TUE</div>
-                        <div class="card-body">${tuesday ? tuesday : '<span class="no-birthday">No Birthday</span>'}</div>
+                        <div class="card-body">${tuesday ? tuesday : '<div class="no-birthday">No Birthday</div>'}</div>
                     </div>
                     <div class="card">
                         <div class="card-head">WED</div>
-                        <div class="card-body">${wednesday ? wednesday : '<span class="no-birthday">No Birthday</span>'}</div>
+                        <div class="card-body">${wednesday ? wednesday : '<div class="no-birthday">No Birthday</div>'}</div>
                     </div>
                     <div class="card">
                         <div class="card-head">THU</div>
-                        <div class="card-body">${thursday ? thursday : '<span class="no-birthday">No Birthday</span>'}</div>
+                        <div class="card-body">${thursday ? thursday : '<div class="no-birthday">No Birthday</div>'}</div>
                     </div>
                     <div class="card">
                         <div class="card-head">FRI</div>
-                        <div class="card-body">${friday ? friday : '<span class="no-birthday">No Birthday</span>'}</div>
+                        <div class="card-body">${friday ? friday : '<div class="no-birthday">No Birthday</div>'}</div>
                     </div>
                     <div class="card">
                         <div class="card-head">SAT</div>
-                        <div class="card-body">${saturday ? saturday : '<span class="no-birthday">No Birthday</span>'}</div>
+                        <div class="card-body">${saturday ? saturday : '<div class="no-birthday">No Birthday</div>'}</div>
                     </div>
                     <div class="card">
                         <div class="card-head">SUN</div>
-                        <div class="card-body">${sunday ? sunday : '<span class="no-birthday">No Birthday</span>'}</div>
+                        <div class="card-body">${sunday ? sunday : '<div class="no-birthday">No Birthday</div>'}</div>
                     </div>
                   </div>`;
-                  let cal = document.getElementById("calendars");
-                  cal.innerHTML = markup;
+    let cal = document.getElementById("calendars");
+    cal.innerHTML = markup;
 }
 
 drawCards(birthdays)
